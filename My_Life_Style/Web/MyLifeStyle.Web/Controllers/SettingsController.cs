@@ -4,12 +4,12 @@
     using System.Linq;
     using System.Threading.Tasks;
 
+    using Microsoft.AspNetCore.Mvc;
+
     using MyLifeStyle.Data.Common.Repositories;
     using MyLifeStyle.Data.Models;
     using MyLifeStyle.Services.Mapping;
     using MyLifeStyle.Web.ViewModels.Settings;
-
-    using Microsoft.AspNetCore.Mvc;
 
     public class SettingsController : BaseController
     {

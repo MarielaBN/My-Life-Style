@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyLifeStyle.Data;
 
 namespace MyLifeStyle.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190810163449_CategoriesEntityWasAdded")]
+    partial class CategoriesEntityWasAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -200,175 +202,16 @@ namespace MyLifeStyle.Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("MyLifeStyle.Data.Models.Article", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("CategoryId")
-                        .IsRequired();
-
-                    b.Property<string>("Content")
-                        .IsRequired();
-
-                    b.Property<string>("PublicationId")
-                        .IsRequired();
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(200);
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
-
-                    b.HasIndex("PublicationId");
-
-                    b.ToTable("Articles");
-                });
-
-            modelBuilder.Entity("MyLifeStyle.Data.Models.Book", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("AuthorName")
-                        .IsRequired()
-                        .HasMaxLength(200);
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(1000);
-
-                    b.Property<string>("PublicationId")
-                        .IsRequired();
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(200);
-
-                    b.Property<int>("Year");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PublicationId");
-
-                    b.ToTable("Books");
-                });
-
             modelBuilder.Entity("MyLifeStyle.Data.Models.Category", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100);
+                    b.Property<string>("Name");
 
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
-                });
-
-            modelBuilder.Entity("MyLifeStyle.Data.Models.Comment", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasMaxLength(1000);
-
-                    b.Property<DateTime?>("CreatedOn");
-
-                    b.Property<string>("PublicationId")
-                        .IsRequired();
-
-                    b.Property<string>("UserId")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PublicationId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Comments");
-                });
-
-            modelBuilder.Entity("MyLifeStyle.Data.Models.Event", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Address")
-                        .IsRequired();
-
-                    b.Property<string>("CategoryId")
-                        .IsRequired();
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(1000);
-
-                    b.Property<DateTime>("EndTime");
-
-                    b.Property<string>("PublicationId")
-                        .IsRequired();
-
-                    b.Property<DateTime>("StartTime");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
-
-                    b.HasIndex("PublicationId");
-
-                    b.ToTable("Events");
-                });
-
-            modelBuilder.Entity("MyLifeStyle.Data.Models.Publication", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime?>("CreatedOn");
-
-                    b.Property<string>("ImageUrl");
-
-                    b.Property<string>("UserId")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Publications");
-                });
-
-            modelBuilder.Entity("MyLifeStyle.Data.Models.Recipe", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Description")
-                        .IsRequired();
-
-                    b.Property<int>("DietType");
-
-                    b.Property<int>("DishType");
-
-                    b.Property<string>("Ingredients")
-                        .HasMaxLength(1000);
-
-                    b.Property<string>("PublicationId")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PublicationId");
-
-                    b.ToTable("Recipes");
                 });
 
             modelBuilder.Entity("MyLifeStyle.Data.Models.Setting", b =>
@@ -438,69 +281,6 @@ namespace MyLifeStyle.Data.Migrations
                     b.HasOne("MyLifeStyle.Data.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict);
-                });
-
-            modelBuilder.Entity("MyLifeStyle.Data.Models.Article", b =>
-                {
-                    b.HasOne("MyLifeStyle.Data.Models.Category", "Category")
-                        .WithMany()
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("MyLifeStyle.Data.Models.Publication", "Publication")
-                        .WithMany()
-                        .HasForeignKey("PublicationId")
-                        .OnDelete(DeleteBehavior.Restrict);
-                });
-
-            modelBuilder.Entity("MyLifeStyle.Data.Models.Book", b =>
-                {
-                    b.HasOne("MyLifeStyle.Data.Models.Publication", "Publication")
-                        .WithMany()
-                        .HasForeignKey("PublicationId")
-                        .OnDelete(DeleteBehavior.Restrict);
-                });
-
-            modelBuilder.Entity("MyLifeStyle.Data.Models.Comment", b =>
-                {
-                    b.HasOne("MyLifeStyle.Data.Models.Publication", "Publication")
-                        .WithMany("Comments")
-                        .HasForeignKey("PublicationId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("MyLifeStyle.Data.Models.ApplicationUser", "User")
-                        .WithMany("Comments")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict);
-                });
-
-            modelBuilder.Entity("MyLifeStyle.Data.Models.Event", b =>
-                {
-                    b.HasOne("MyLifeStyle.Data.Models.Category", "Category")
-                        .WithMany()
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("MyLifeStyle.Data.Models.Publication", "Publication")
-                        .WithMany()
-                        .HasForeignKey("PublicationId")
-                        .OnDelete(DeleteBehavior.Restrict);
-                });
-
-            modelBuilder.Entity("MyLifeStyle.Data.Models.Publication", b =>
-                {
-                    b.HasOne("MyLifeStyle.Data.Models.ApplicationUser", "User")
-                        .WithMany("Publications")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict);
-                });
-
-            modelBuilder.Entity("MyLifeStyle.Data.Models.Recipe", b =>
-                {
-                    b.HasOne("MyLifeStyle.Data.Models.Publication", "Publication")
-                        .WithMany()
-                        .HasForeignKey("PublicationId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 #pragma warning restore 612, 618
