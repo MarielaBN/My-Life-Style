@@ -15,7 +15,7 @@
         // TODO: to change Content to Description
         [Required]
         [MaxLength(1000)]
-        public string Content { get; set; } 
+        public string Description { get; set; } 
 
         public DateTime? CreatedOn { get; set; }
 

@@ -4,19 +4,16 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    public class Publication
+    using MyLifeStyle.Data.Common.Models;
+
+    public class Publication : BaseModel<string>
     {
         public Publication()
         {
             this.Id = Guid.NewGuid().ToString();
             this.Comments = new List<Comment>();
+            this.Images = new List<Image>();
         }
-
-        public string Id { get; set; }
-
-        public DateTime? CreatedOn { get; set; }
-
-        public string ImageUrl { get; set; }
 
         [Required]
         public string UserId { get; set; }
@@ -24,5 +21,7 @@
         public virtual ApplicationUser User { get; set; }
 
         public virtual ICollection<Comment> Comments { get; set; }
+
+        public virtual ICollection<Image> Images { get; set; }
     }
 }

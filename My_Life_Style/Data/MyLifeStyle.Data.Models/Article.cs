@@ -18,7 +18,7 @@
 
         // TODO: to change Content to Description
         [Required]
-        public string Content { get; set; }
+        public string Description { get; set; }
 
         [Required]
         public string CategoryId { get; set; }

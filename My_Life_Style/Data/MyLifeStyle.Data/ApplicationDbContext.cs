@@ -40,6 +40,8 @@
 
         public DbSet<Book> Books { get; set; }
 
+        public DbSet<Image> Images { get; set; }
+
         public override int SaveChanges() => this.SaveChanges(true);
 
         public override int SaveChanges(bool acceptAllChangesOnSuccess)
@@ -76,6 +78,12 @@
             builder.Entity<Comment>()
                    .HasOne(x => x.Publication)
                    .WithMany(x => x.Comments)
+                   .HasForeignKey(x => x.PublicationId)
+                   .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<Image>()
+                   .HasOne(x => x.Publication)
+                   .WithMany(x => x.Images)
                    .HasForeignKey(x => x.PublicationId)
                    .OnDelete(DeleteBehavior.Restrict);
 
