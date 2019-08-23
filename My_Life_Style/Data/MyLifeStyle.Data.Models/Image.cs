@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
-
-namespace MyLifeStyle.Data.Models
+﻿namespace MyLifeStyle.Data.Models
 {
-  public class Image
+    using System;
+    using System.ComponentModel.DataAnnotations;
+
+    public class Image
     {
         public Image()
         {

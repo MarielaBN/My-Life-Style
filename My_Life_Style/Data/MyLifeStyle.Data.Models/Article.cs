@@ -13,11 +13,6 @@
         public string Id { get; set; }
 
         [Required]
-        [MaxLength(200)]
-        public string Title { get; set; }
-
-        // TODO: to change Content to Description
-        [Required]
         public string Description { get; set; }
 
         [Required]

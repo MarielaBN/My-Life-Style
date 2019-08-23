@@ -214,10 +214,6 @@ namespace MyLifeStyle.Data.Migrations
                     b.Property<string>("PublicationId")
                         .IsRequired();
 
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(200);
-
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
@@ -243,10 +239,6 @@ namespace MyLifeStyle.Data.Migrations
                     b.Property<string>("PublicationId")
                         .IsRequired();
 
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(200);
-
                     b.Property<int>("Year");
 
                     b.HasKey("Id");
@@ -260,6 +252,8 @@ namespace MyLifeStyle.Data.Migrations
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<int>("ArticlesCount");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -275,11 +269,13 @@ namespace MyLifeStyle.Data.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime?>("CreatedOn");
+                    b.Property<DateTime>("CreatedOn");
 
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(1000);
+
+                    b.Property<DateTime?>("ModifiedOn");
 
                     b.Property<string>("PublicationId")
                         .IsRequired();
@@ -354,6 +350,9 @@ namespace MyLifeStyle.Data.Migrations
                     b.Property<DateTime>("CreatedOn");
 
                     b.Property<DateTime?>("ModifiedOn");
+
+                    b.Property<string>("Title")
+                        .HasMaxLength(400);
 
                     b.Property<string>("UserId")
                         .IsRequired();

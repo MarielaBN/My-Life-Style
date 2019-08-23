@@ -3,21 +3,18 @@
     using System;
     using System.ComponentModel.DataAnnotations;
 
-    public class Comment
+    using MyLifeStyle.Data.Common.Models;
+
+    public class Comment : BaseModel<string>
     {
         public Comment()
         {
             this.Id = Guid.NewGuid().ToString();
         }
 
-        public string Id { get; set; }
-
-        // TODO: to change Content to Description
         [Required]
         [MaxLength(1000)]
-        public string Description { get; set; } 
-
-        public DateTime? CreatedOn { get; set; }
+        public string Description { get; set; }
 
         [Required]
         public string UserId { get; set; }

@@ -1,0 +1,16 @@
+﻿@using MyLifeStyle.Web.ViewModels.Comments
+@model IEnumerable<AllCommentsViewModel>
+
+@{
+    this.ViewData["Title"] = "Comments";
+}
+
+<h1>@this.ViewData["Title"]</h1>
+
+@foreach (var comment in Model)
+{
+    <div>@comment.UserUserName,  @comment.CreatedOn:</div>
+    <div>@comment.Description</div>
+}
+
+@*<a asp-action="InsertComment" class="btn btn-primary">Insert new comment</a>*@

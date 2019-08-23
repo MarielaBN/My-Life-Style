@@ -2,17 +2,6 @@
 {
     using System.Reflection;
 
-    using MyLifeStyle.Data;
-    using MyLifeStyle.Data.Common;
-    using MyLifeStyle.Data.Common.Repositories;
-    using MyLifeStyle.Data.Models;
-    using MyLifeStyle.Data.Repositories;
-    using MyLifeStyle.Data.Seeding;
-    using MyLifeStyle.Services.Data;
-    using MyLifeStyle.Services.Mapping;
-    using MyLifeStyle.Services.Messaging;
-    using MyLifeStyle.Web.ViewModels;
-
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
@@ -24,6 +13,23 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
+
+    using MyLifeStyle.Data;
+    using MyLifeStyle.Data.Common;
+    using MyLifeStyle.Data.Common.Repositories;
+    using MyLifeStyle.Data.Models;
+    using MyLifeStyle.Data.Repositories;
+    using MyLifeStyle.Data.Seeding;
+    using MyLifeStyle.Services.Data;
+    using MyLifeStyle.Services.Data.Articles;
+    using MyLifeStyle.Services.Data.Books;
+    using MyLifeStyle.Services.Data.Categories;
+    using MyLifeStyle.Services.Data.Comments;
+    using MyLifeStyle.Services.Data.Events;
+    using MyLifeStyle.Services.Data.Recipes;
+    using MyLifeStyle.Services.Mapping;
+    using MyLifeStyle.Services.Messaging;
+    using MyLifeStyle.Web.ViewModels;
 
     public class Startup
     {
@@ -99,6 +105,12 @@
             services.AddTransient<IEmailSender, NullMessageSender>();
             services.AddTransient<ISmsSender, NullMessageSender>();
             services.AddTransient<ISettingsService, SettingsService>();
+            services.AddTransient<ICommentsService, CommentsService>();
+            services.AddTransient<ICategoriesService, CategoriesService>();
+            services.AddTransient<IArticlesService, ArticlesService>();
+            services.AddTransient<IEventsService, EventsService>();
+            services.AddTransient<IBooksService, BooksService>();
+            services.AddTransient<IRecipesService, RecipesService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

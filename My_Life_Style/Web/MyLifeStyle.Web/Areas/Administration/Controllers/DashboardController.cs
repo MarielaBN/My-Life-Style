@@ -1,9 +1,8 @@
 ﻿namespace MyLifeStyle.Web.Areas.Administration.Controllers
 {
+    using Microsoft.AspNetCore.Mvc;
     using MyLifeStyle.Services.Data;
     using MyLifeStyle.Web.Areas.Administration.ViewModels.Dashboard;
-
-    using Microsoft.AspNetCore.Mvc;
 
     public class DashboardController : AdministrationController
     {

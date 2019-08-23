@@ -13,10 +13,6 @@
         public string Id { get; set; }
 
         [Required]
-        [MaxLength(200)]
-        public string Title { get; set; }
-
-        [Required]
         [MaxLength(1000)]
         public string Description { get; set; }
 
@@ -25,7 +21,7 @@
         public string AuthorName { get; set; }
 
         [Range(1000, 3000)]
-        public int Year { get; set; }
+        public ushort Year { get; set; }
 
         [Required]
         public string PublicationId { get; set; }

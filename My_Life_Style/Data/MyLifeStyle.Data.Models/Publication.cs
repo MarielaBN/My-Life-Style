@@ -15,6 +15,9 @@
             this.Images = new List<Image>();
         }
 
+        [MaxLength(400)]
+        public string Title { get; set; }
+
         [Required]
         public string UserId { get; set; }
 

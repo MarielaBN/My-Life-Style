@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
@@ -21,6 +21,8 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Data\MyLifeStyle.Data.Common\MyLifeStyle.Data.Common.csproj" />
     <ProjectReference Include="..\..\Data\MyLifeStyle.Data.Models\MyLifeStyle.Data.Models.csproj" />
+    <ProjectReference Include="..\..\Data\MyLifeStyle.Data\MyLifeStyle.Data.csproj" />
+    <ProjectReference Include="..\MyLifeStyle.Services.Mapping\MyLifeStyle.Services.Mapping.csproj" />
   </ItemGroup>
 
 </Project>
