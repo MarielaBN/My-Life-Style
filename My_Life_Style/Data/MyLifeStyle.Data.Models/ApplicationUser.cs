@@ -3,7 +3,7 @@ namespace MyLifeStyle.Data.Models
 {
     using System;
     using System.Collections.Generic;
-
+    using System.ComponentModel.DataAnnotations;
     using Microsoft.AspNetCore.Identity;
     using MyLifeStyle.Data.Common.Models;
 
@@ -28,6 +28,9 @@ namespace MyLifeStyle.Data.Models
         public bool IsDeleted { get; set; }
 
         public DateTime? DeletedOn { get; set; }
+
+        [MaxLength(200)]
+        public string FullName { get; set; }
 
         public virtual ICollection<IdentityUserRole<string>> Roles { get; set; }
 

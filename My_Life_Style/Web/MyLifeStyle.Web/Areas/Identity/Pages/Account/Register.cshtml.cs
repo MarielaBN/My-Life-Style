@@ -49,7 +49,8 @@
             returnUrl = returnUrl ?? this.Url.Content("~/");
             if (this.ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = this.Input.Email, Email = this.Input.Email };
+                var user = new ApplicationUser { UserName = this.Input.UserName, Email = this.Input.Email, FullName = this.Input.FullName };
+
                 var result = await this.userManager.CreateAsync(user, this.Input.Password);
                 if (result.Succeeded)
                 {
@@ -84,6 +85,11 @@
         public class InputModel
         {
             [Required]
+            [StringLength(36, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 3)]
+            [Display(Name = "Username")]
+            public string UserName { get; set; }
+
+            [Required]
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
@@ -98,6 +104,11 @@
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+            [Required]
+            [StringLength(70, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 3)]
+            [Display(Name = "Full Name")]
+            public string FullName { get; set; }
         }
     }
 }
