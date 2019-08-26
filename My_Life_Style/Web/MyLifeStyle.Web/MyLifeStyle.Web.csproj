@@ -31,6 +31,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Data\MyLifeStyle.Data.Models\MyLifeStyle.Data.Models.csproj" />
     <ProjectReference Include="..\..\Data\MyLifeStyle.Data\MyLifeStyle.Data.csproj" />
+    <ProjectReference Include="..\..\MyLifeStyle.Common\MyLifeStyle.Common.csproj" />
     <ProjectReference Include="..\..\Services\MyLifeStyle.Services.Data\MyLifeStyle.Services.Data.csproj" />
     <ProjectReference Include="..\..\Services\MyLifeStyle.Services.Mapping\MyLifeStyle.Services.Mapping.csproj" />
     <ProjectReference Include="..\..\Services\MyLifeStyle.Services.Messaging\MyLifeStyle.Services.Messaging.csproj" />

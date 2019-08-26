@@ -1,6 +1,7 @@
 ﻿namespace MyLifeStyle.Web.Areas.Identity.Pages.Account
 {
     using System.ComponentModel.DataAnnotations;
+    using System.Linq;
     using System.Text.Encodings.Web;
     using System.Threading.Tasks;
 
@@ -10,6 +11,7 @@
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.RazorPages;
     using Microsoft.Extensions.Logging;
+    using MyLifeStyle.Common;
     using MyLifeStyle.Data.Models;
 
     [AllowAnonymous]
@@ -49,11 +51,21 @@
             returnUrl = returnUrl ?? this.Url.Content("~/");
             if (this.ModelState.IsValid)
             {
+                var isRoot = !this.userManager.Users.Any();
                 var user = new ApplicationUser { UserName = this.Input.UserName, Email = this.Input.Email, FullName = this.Input.FullName };
 
                 var result = await this.userManager.CreateAsync(user, this.Input.Password);
                 if (result.Succeeded)
                 {
+                    if (isRoot)
+                    {
+                        await this.userManager.AddToRoleAsync(user, GlobalConstants.AdministratorRoleName);
+                    }
+                    else
+                    {
+                        await this.userManager.AddToRoleAsync(user, GlobalConstants.UserRoleName);
+                    }
+
                     this.logger.LogInformation("User created a new account with password.");
 
                     var code = await this.userManager.GenerateEmailConfirmationTokenAsync(user);
@@ -107,7 +119,7 @@
 
             [Required]
             [StringLength(70, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 3)]
-            [Display(Name = "Full Name")]
+            [Display(Name = "Name")]
             public string FullName { get; set; }
         }
     }

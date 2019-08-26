@@ -25,6 +25,7 @@
     using MyLifeStyle.Services.Data.Books;
     using MyLifeStyle.Services.Data.Categories;
     using MyLifeStyle.Services.Data.Comments;
+    using MyLifeStyle.Services.Data.Dashboard;
     using MyLifeStyle.Services.Data.Events;
     using MyLifeStyle.Services.Data.Recipes;
     using MyLifeStyle.Services.Mapping;
@@ -113,6 +114,7 @@
             services.AddTransient<IEventsService, EventsService>();
             services.AddTransient<IBooksService, BooksService>();
             services.AddTransient<IRecipesService, RecipesService>();
+            services.AddTransient<IDashboardService, DashboardService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
