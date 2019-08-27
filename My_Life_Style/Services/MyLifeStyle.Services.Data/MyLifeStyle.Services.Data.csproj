@@ -22,6 +22,7 @@
     <ProjectReference Include="..\..\Data\MyLifeStyle.Data.Common\MyLifeStyle.Data.Common.csproj" />
     <ProjectReference Include="..\..\Data\MyLifeStyle.Data.Models\MyLifeStyle.Data.Models.csproj" />
     <ProjectReference Include="..\..\Data\MyLifeStyle.Data\MyLifeStyle.Data.csproj" />
+    <ProjectReference Include="..\..\Web\MyLifeStyle.Web.ViewModels\MyLifeStyle.Web.ViewModels.csproj" />
     <ProjectReference Include="..\MyLifeStyle.Services.Mapping\MyLifeStyle.Services.Mapping.csproj" />
   </ItemGroup>
 

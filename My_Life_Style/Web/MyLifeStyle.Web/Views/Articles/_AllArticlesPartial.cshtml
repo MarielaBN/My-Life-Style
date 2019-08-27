@@ -1,0 +1,22 @@
+﻿@using MyLifeStyle.Web.ViewModels.Articles
+@model IEnumerable<AllArticlesViewModel>
+
+@foreach (var article in Model)
+{
+    <div class="post">
+        <h2 class="title"><a href="/Articles/Details/@article.Id">@article.PublicationTitle</a></h2>
+        <p class="byline">@article.PublicationCreatedOn</p>
+
+        <div class="entry">
+            <p>@article.Summary</p>
+        </div>
+
+        <div class="meta">
+            <p class="tags"></p>
+            <p class="links">
+                Публикувана в <a href="/Articles/Index/@article.CategoryId">@article.CategoryName</a>	&nbsp;&bull;&nbsp;
+                <a href="/Comments/Index/@article.PublicationId">@article.CommentsCount коментара &#187;</a>
+            </p>
+        </div>
+    </div>
+}
