@@ -11,6 +11,9 @@
     using System.Security.Claims;
     using System.Threading.Tasks;
     using MyLifeStyle.Services.Mapping;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Microsoft.EntityFrameworkCore;
 
 
     public class ArticlesController : BaseController, IMapTo<ArticleServiceModel>
@@ -29,6 +32,11 @@
         [HttpGet("[controller]/[action]/{id}")]
         public IActionResult Index(string id)
         {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
             var articles = this.articlesService
                   .GetAllArticlesByCategory<AllArticlesViewModel>(id);
 
@@ -84,6 +92,22 @@
 
             return this.Redirect("/Articles/All");
             // return this.Json(model);
+        }
+
+        [HttpGet(Name = "Details")]
+        public async Task<IActionResult> Details(string id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var currentUserId = this.userManager.GetUserId(this.User);
+            ArticleDetailsViewModel articleViewModel = await this.articlesService.GetArticleById(id);
+            articleViewModel.CurrentUserId = currentUserId;
+
+            return this.View(articleViewModel);
+           // return this.Json(articleViewModel);
         }
     }
 }

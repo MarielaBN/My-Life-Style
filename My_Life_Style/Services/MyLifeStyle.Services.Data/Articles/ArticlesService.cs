@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using Microsoft.EntityFrameworkCore;
     using MyLifeStyle.Data;
     using MyLifeStyle.Data.Models;
     using MyLifeStyle.Services.Mapping;
@@ -61,6 +62,14 @@
             await this.context.Articles.AddAsync(article);
             int result = await this.context.SaveChangesAsync();
             return result > 0;
+        }
+
+        public async Task<ArticleDetailsViewModel> GetArticleById(string id)
+        {
+            ArticleDetailsViewModel article = await this.context.Articles.To<ArticleDetailsViewModel>()
+                .SingleOrDefaultAsync(a => a.Id == id);
+
+            return article;
         }
     }
 }

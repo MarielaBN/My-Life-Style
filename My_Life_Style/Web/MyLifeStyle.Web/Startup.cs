@@ -1,5 +1,6 @@
 ﻿namespace MyLifeStyle.Web
 {
+    using System.Globalization;
     using System.Reflection;
 
     using Microsoft.AspNetCore.Builder;
@@ -31,6 +32,7 @@
     using MyLifeStyle.Services.Mapping;
     using MyLifeStyle.Services.Messaging;
     using MyLifeStyle.Web.ViewModels;
+    using MyLifeStyle.Web.ViewModels.Articles;
 
     public class Startup
     {
@@ -121,6 +123,9 @@
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
+
+            CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
+            CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.InvariantCulture;
 
             // Seed data on application startup
             using (var serviceScope = app.ApplicationServices.CreateScope())
