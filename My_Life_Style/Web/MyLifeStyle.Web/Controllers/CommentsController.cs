@@ -41,5 +41,14 @@
             return this.View();
         }
 
+        public IActionResult Book(string id)
+        {
+            var bookId = id;
+
+            // var comments = this.commentsService.GetAllComments<AllCommentsViewModel>(publicationId);
+
+            return this.View();
+        }
+
     }
 }

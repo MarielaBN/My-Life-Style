@@ -5,14 +5,15 @@
     this.ViewData["Title"] = "Admin dashboard";
 }
 
-<h1>@this.ViewData["Title"]</h1>
+<h2>@this.ViewData["Title"]</h2>
 <h5>All Registered: @this.Model.AllRegisteredCount</h5>
-<hr class="hr-2 bg-primary mt-4">
+<hr />
+@*<hr class="hr-2 bg-primary mt-4">*@
 <h5>Administrators: @this.Model.AllAdminsCount</h5>
 <h5>Moderators: @this.Model.AllModeratorsCount</h5>
 <h5>Users: @this.Model.AllUsersCount</h5>
-
-<hr class="hr-2 bg-primary mt-4">
+<hr />
+@*<hr class="hr-2 bg-primary mt-4">*@
 <a class="btn btn-primary" asp-area="Administration" asp-controller="Dashboard" asp-action="Promote">Promote User as Moderator</a>
 
 <a class="btn btn-primary" asp-area="Administration" asp-controller="Dashboard" asp-action="Demote">Demote Moderator as User</a>

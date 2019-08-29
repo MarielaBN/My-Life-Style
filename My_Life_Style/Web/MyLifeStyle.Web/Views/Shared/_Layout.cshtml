@@ -42,8 +42,8 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         @*<li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Settings" asp-action="Index">Settings</a>
-                        </li>*@
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Settings" asp-action="Index">Settings</a>
+                            </li>*@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
@@ -82,6 +82,24 @@
                                     @if (this.User.Identity.IsAuthenticated)
                                     {
                                         <a class="dropdown-item text-dark" href="/Recipes/Create">Create Recipe</a>
+                                    }
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <div class="dropdown show">
+                                <a class="nav-link active dropdown-toggle text-dark" href="#"
+                                   id="dropdownMenuLink"
+                                   data-toggle="dropdown"
+                                   aria-haspopup="true"
+                                   aria-expanded="false">
+                                    Books
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <a class="dropdown-item text-dark" href="/Books/All">All Books</a>
+                                    @if (this.User.Identity.IsAuthenticated)
+                                    {
+                                        <a class="dropdown-item text-dark" href="/Books/Create">Give a Book</a>
                                     }
                                 </div>
                             </div>

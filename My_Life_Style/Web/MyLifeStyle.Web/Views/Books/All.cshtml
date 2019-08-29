@@ -1,0 +1,41 @@
+﻿@using MyLifeStyle.Web.ViewModels.Books
+@model IEnumerable<AllBooksViewModel>
+
+@{
+    this.ViewData["Title"] = "Books";
+}
+
+    <h3>Find Your Next Read Book</h3>
+
+<h4>See below to find books of every kind.</h4>
+
+@*@foreach (var book in Model)
+{
+    <div>@book.PublicationTitle, @book.AuthorName, @book.Year, (@book.PublicationCreatedOn) </div>
+}*@
+
+
+@foreach (var book in Model)
+{
+    <hr>
+    <div class="post">
+        <h2 class="title"><a href="/Books/Details/@book.Id">@book.PublicationTitle</a></h2>
+        <p class="byline">
+            @book.AuthorName
+            <a>&nbsp;&bull;&nbsp;</a>
+            @book.Year
+        </p>
+        
+        <div class="entry">
+            <p>@book.Summary</p>
+        </div>
+
+        <div class="meta">
+            <p class="tags"></p>
+            <p class="links">
+                Публикувана на <a>@book.PublicationCreatedOn</a>	&nbsp;&bull;&nbsp;
+                <a href="/Comments/Book/@book.PublicationId">@book.CommentsCount коментара &#187;</a>
+            </p>
+        </div>
+    </div>
+}
