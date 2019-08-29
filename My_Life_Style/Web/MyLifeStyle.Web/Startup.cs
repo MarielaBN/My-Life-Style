@@ -124,8 +124,8 @@
         {
             AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
 
-            CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
-            CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.InvariantCulture;
+           // CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
+           // CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.InvariantCulture;
 
             // Seed data on application startup
             using (var serviceScope = app.ApplicationServices.CreateScope())

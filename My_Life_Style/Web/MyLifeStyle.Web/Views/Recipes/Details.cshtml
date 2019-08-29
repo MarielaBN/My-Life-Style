@@ -1,0 +1,70 @@
+﻿@using System.ComponentModel.DataAnnotations;
+@using System.Reflection;
+@using MyLifeStyle.Common
+@using MyLifeStyle.Web.ViewModels.Recipes
+@model RecipeDetailsViewModel
+@{
+    ViewData["Title"] = "Recipe Details";
+}
+
+@*<h1>@ViewData["Title"]</h1>*@
+
+<h2 class="title">@Model.PublicationTitle</h2>
+<hr>
+<div class="article text">
+    <h4>Необходими продукти:</h4>
+    <p>
+        @Model.Ingredients
+    </p>
+    <hr>
+    <h4>Начин на приготвяне:</h4>
+    <p>
+        @Model.Description
+    </p>
+    <div class="meta">
+        <p>
+            <small>
+                Тази рецепта е публикувана на @Model.PublicationCreatedOn, от автор @Model.PublicationUserFullName &nbsp;&bull;&nbsp;
+            </small>
+        </p>
+
+
+        @{
+            var dishType = Model.DishType;
+            var dietType = Model.DietType;
+        }
+
+        @{
+            var dishTypeName = dishType.GetType()?.GetMember(dishType.ToString())?[0]?.GetCustomAttribute<DisplayAttribute>()?.Name;
+            var dietTypeName = dietType.GetType()?.GetMember(dietType.ToString())?[0]?.GetCustomAttribute<DisplayAttribute>()?.Name;
+        }
+
+        <div class="meta">
+            <p class="tags"></p>
+            <p class="links">
+                Публикувана в <a href="/Recipes/Dish/@Model.DishType">@dishTypeName</a>	&nbsp;&bull;&nbsp;
+                Тип диета <a href="/Recipes/Diet/@Model.DietType">@dietTypeName</a>	&nbsp;&bull;&nbsp;
+            </p>
+        </div>
+
+    </div>
+
+    <hr>
+
+    @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName)
+|| this.User.IsInRole(GlobalConstants.ModeratorRoleName)
+|| Model.CurrentUserId == Model.PublicationUserId)
+    {
+        <a href="/Recipes/Edit/@Model.Id" class="btn btn-warning text-white font-weight-bold">Edit</a>
+        <a href="/Recipes/Delete/@Model.Id" class="btn btn-danger text-white font-weight-bold">Delete</a>
+    }
+    <a href="/Recipes/All" class="btn btn-success text-white font-weight-bold">Back to Recipes</a>
+</div>
+
+<hr>
+
+<div>
+    <a href="/Comments/Recipe/@Model.Id" class="btn btn-primary btn-lg">Comments (@Model.CommentsCount)</a>
+</div>
+
+<hr>

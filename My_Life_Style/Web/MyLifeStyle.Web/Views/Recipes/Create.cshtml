@@ -1,0 +1,51 @@
+﻿@using MyLifeStyle.Data.Models.Enums
+@using MyLifeStyle.Web.ViewModels.Recipes
+@model RecipeCreateInputModel
+@{
+    ViewData["Title"] = "Create Recipe";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="row">
+    <div class="col-md-6">
+        <form method="post" asp-controller="Recipes" asp-action="Create">
+            <hr />
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="PublicationTitle"></label>
+                <input asp-for="PublicationTitle" class="form-control" placeholder="Title..." />
+                <span asp-validation-for="PublicationTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ingredients"></label>
+                <textarea asp-for="Ingredients" class="form-control h-25" rows="7" placeholder="Ingredients..." /></textarea>
+                <span asp-validation-for="Ingredients" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description"></label>
+                <textarea asp-for="Description" class="form-control h-25" rows="6" placeholder="Description..." /></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label asp-for="DishType" class="input-group-text"></label>
+                </div>
+                <select asp-for="DishType" class="custom-select" asp-items="@Html.GetEnumSelectList<DishType>()"> 
+                    <option selected>Choose...</option>
+                </select>
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label asp-for="DietType" class="input-group-text"></label>
+                </div>
+                <select asp-for="DietType" class="custom-select" asp-items="@Html.GetEnumSelectList<DietType>()">   
+                    <option selected>Choose...</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Create</button>
+        </form>
+    </div>
+</div>
+
+

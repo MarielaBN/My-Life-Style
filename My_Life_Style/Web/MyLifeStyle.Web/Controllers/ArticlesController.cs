@@ -109,5 +109,17 @@
             return this.View(articleViewModel);
            // return this.Json(articleViewModel);
         }
+
+        public async Task<IActionResult> Edit(string id)
+        {
+            var articleId = id;
+            return this.View();
+        }
+
+        public async Task<IActionResult> Delete(string id)
+        {
+            var articleId = id;
+            return this.View();
+        }
     }
 }

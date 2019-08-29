@@ -18,7 +18,7 @@
         public IEnumerable<TViewModel> GetAllCategories<TViewModel>()
         {
             var categories = this.context.Categories
-                  .OrderBy(x => x.ArticlesCount).ThenBy(x => x.Name)
+                  .OrderByDescending(x => x.ArticlesCount)
                   .To<TViewModel>()
                   .ToList();
 

@@ -13,12 +13,33 @@
             this.commentsService = commentsService;
         }
 
-        public IActionResult Index(string publicationId)
+        public IActionResult Index(string id)
         {
+            var publicationId = id;
+
             var comments = this.commentsService
                   .GetAllComments<AllCommentsViewModel>(publicationId);
 
             return this.View(comments);
         }
+
+        public IActionResult Article(string id)
+        {
+            var articleId = id;
+
+           // var comments = this.commentsService.GetAllComments<AllCommentsViewModel>(publicationId);
+
+            return this.View();
+        }
+
+        public IActionResult Recipe(string id)
+        {
+            var recipeId = id;
+
+            // var comments = this.commentsService.GetAllComments<AllCommentsViewModel>(publicationId);
+
+            return this.View();
+        }
+
     }
 }

@@ -13,6 +13,18 @@
         <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" asp-append-version="true" />
         <link href="~/css/site.min.css" rel="stylesheet" asp-append-version="true" />
     </environment>
+    <style>
+        hr {
+            display: block;
+            margin-top: 0.5em;
+            margin-bottom: 0.5em;
+            margin-left: auto;
+            margin-right: auto;
+            border-style: dashed;
+            border-width: 1px;
+            border-color: SeaBuckthorn;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -36,6 +48,9 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Categories" asp-action="All">Categories</a>
+                        </li>
+                        <li class="nav-item">
                             <div class="dropdown show">
                                 <a class="nav-link active dropdown-toggle text-dark" href="#"
                                    id="dropdownMenuLink"
@@ -53,19 +68,37 @@
                                 </div>
                             </div>
                         </li>
+                        <li class="nav-item">
+                            <div class="dropdown show">
+                                <a class="nav-link active dropdown-toggle text-dark" href="#"
+                                   id="dropdownMenuLink"
+                                   data-toggle="dropdown"
+                                   aria-haspopup="true"
+                                   aria-expanded="false">
+                                    Recipes
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <a class="dropdown-item text-dark" href="/Recipes/All">All Recipes</a>
+                                    @if (this.User.Identity.IsAuthenticated)
+                                    {
+                                        <a class="dropdown-item text-dark" href="/Recipes/Create">Create Recipe</a>
+                                    }
+                                </div>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-    
+
     <div class="container">
         <partial name="_CookieConsentPartial" />
         <main role="main" class="pb-3">
             @this.RenderBody()
         </main>
     </div>
-    
+
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; @DateTime.Now.Year - MyLifeStyle - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>

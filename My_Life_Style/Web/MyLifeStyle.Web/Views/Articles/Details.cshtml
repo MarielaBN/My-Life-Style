@@ -5,23 +5,11 @@
     ViewData["Title"] = "Article Details";
 }
 
-<h1>@ViewData["Title"]</h1>
+@*<h1>@ViewData["Title"]</h1>*@
 
-<style>
-    hr {
-        display: block;
-        margin-top: 0.5em;
-        margin-bottom: 0.5em;
-        margin-left: auto;
-        margin-right: auto;
-        border-style: dashed;
-        border-width: 1px;
-    }
-</style>
-
+<h2 class="title">@Model.PublicationTitle</h2>
 <hr>
 <div class="article text">
-    <h2 class="title">@Model.PublicationTitle</h2>
     <p>
         @Model.Description
     </p>
@@ -35,23 +23,19 @@
             Категория  <a href="/Articles/Index/@Model.CategoryId ">@Model.CategoryName</a>	&#187;
         </p>
     </div>
-
     <hr>
 
     @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName)
-  || this.User.IsInRole(GlobalConstants.ModeratorRoleName)
-  || Model.CurrentUserId == Model.PublicationUserId)
+|| this.User.IsInRole(GlobalConstants.ModeratorRoleName)
+|| Model.CurrentUserId == Model.PublicationUserId)
     {
         <a href="/Articles/Edit/@Model.Id" class="btn btn-warning text-white font-weight-bold">Edit</a>
         <a href="/Articles/Delete/@Model.Id" class="btn btn-danger text-white font-weight-bold">Delete</a>
     }
     <a href="/Articles/All" class="btn btn-success text-white font-weight-bold">Back to Articles</a>
 </div>
-
 <hr>
-
-<div >
-    <button  href="/Comments/Index/@Model.Id" class="btn btn-primary btn-lg">Comments (@Model.CommentsCount)</button>   
+<div>
+    <a href="/Comments/Article/@Model.Id" class="btn btn-primary btn-lg">Comments (@Model.CommentsCount)</a>
 </div>
-
 <hr>

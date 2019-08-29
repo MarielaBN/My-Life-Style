@@ -13,7 +13,7 @@
             this.categoriesService = categoriesService;
         }
 
-        public IActionResult Index()
+        public IActionResult All()
         {
             var categories = this.categoriesService
                   .GetAllCategories<AllCategoriesViewModel>();

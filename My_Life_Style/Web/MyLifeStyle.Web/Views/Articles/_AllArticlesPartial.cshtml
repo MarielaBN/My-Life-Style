@@ -3,6 +3,7 @@
 
 @foreach (var article in Model)
 {
+    <hr>
     <div class="post">
         <h2 class="title"><a href="/Articles/Details/@article.Id">@article.PublicationTitle</a></h2>
         <p class="byline">@article.PublicationCreatedOn</p>

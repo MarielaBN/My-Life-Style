@@ -1,0 +1,53 @@
+﻿@using System.ComponentModel.DataAnnotations;
+@using System.Reflection;
+@using MyLifeStyle.Web.ViewModels.Recipes
+@model IEnumerable<AllRecipesViewModel>
+
+@{
+    this.ViewData["Title"] = "All Recipes";
+}
+
+<h2>@this.ViewData["Title"]</h2>
+
+@foreach (var recipe in Model)
+{
+    <hr>
+    <div class="post">
+        <h2 class="title"><a href="/Recipes/Details/@recipe.Id">@recipe.PublicationTitle</a></h2>
+        <p class="byline">@recipe.PublicationCreatedOn</p>
+
+        <div class="entry">
+            <p>@recipe.Summary</p>
+        </div>
+
+        @{
+            var dishType = recipe.DishType;
+            var dietType = recipe.DietType;
+        }
+
+        @{
+            var dishTypeName = dishType.GetType()?.GetMember(dishType.ToString())?[0]?.GetCustomAttribute<DisplayAttribute>()?.Name;
+            var dietTypeName = dietType.GetType()?.GetMember(dietType.ToString())?[0]?.GetCustomAttribute<DisplayAttribute>()?.Name;
+        }
+
+        <div class="meta">
+            <p class="tags"></p>
+            <p class="links">
+                Публикувана в <a href="/Recipes/Dish/@recipe.DishType">@dishTypeName</a>	&nbsp;&bull;&nbsp;
+                Тип диета <a href="/Recipes/Diet/@recipe.DietType">@dietTypeName</a>	&nbsp;&bull;&nbsp;
+                <a href="/Comments/Index/@recipe.PublicationId">@recipe.CommentsCount коментара &#187;</a>
+            </p>
+        </div>
+    </div>
+
+    @*<p>
+        @{
+            var enumValue = recipe.DishType;
+        }
+
+        @{
+            var enumValue1 = enumValue.GetType()?.GetMember(enumValue.ToString())?[0]?.GetCustomAttribute<DisplayAttribute>()?.Name;
+        }
+        <a>@enumValue1</a>
+    </p>*@
+}

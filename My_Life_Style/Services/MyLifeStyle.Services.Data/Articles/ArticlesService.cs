@@ -42,7 +42,6 @@
 
         public async Task<bool> CreateArticle(ArticleServiceModel serviceModel)
         {
-
             Publication publication = new Publication
             {
                 CreatedOn = DateTime.UtcNow,
@@ -61,6 +60,16 @@
 
             await this.context.Articles.AddAsync(article);
             int result = await this.context.SaveChangesAsync();
+
+            if (result > 0)
+            {
+                Category categoryFromDB = await this.context.Categories.SingleOrDefaultAsync(a => a.Id == serviceModel.CategoryId);
+
+                categoryFromDB.ArticlesCount++;
+                this.context.Categories.Update(categoryFromDB);
+                await this.context.SaveChangesAsync();
+            }
+
             return result > 0;
         }
 
