@@ -19,23 +19,23 @@
             this.context = context;
         }
 
-        public IEnumerable<TViewModel> GetAllArticlesByCategory<TViewModel>(string categoryId)
+        public async Task<IEnumerable<TViewModel>> GetAllArticlesByCategory<TViewModel>(string categoryId)
         {
-            var articles = this.context.Articles
+            var articles = await this.context.Articles
                 .Where(x => x.CategoryId == categoryId)
                  .OrderByDescending(x => x.Publication.CreatedOn)
                  .To<TViewModel>()
-                 .ToList();
+                 .ToListAsync();
 
             return articles;
         }
 
-        public IEnumerable<TViewModel> GetAllArticles<TViewModel>()
+        public async Task<IEnumerable<TViewModel>> GetAllArticles<TViewModel>()
         {
-            var articles = this.context.Articles
+            var articles = await this.context.Articles
                  .OrderByDescending(x => x.Publication.CreatedOn)
                  .To<TViewModel>()
-                 .ToList();
+                 .ToListAsync();
 
             return articles;
         }

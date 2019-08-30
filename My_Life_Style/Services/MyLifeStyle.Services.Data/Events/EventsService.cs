@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using Microsoft.EntityFrameworkCore;
     using MyLifeStyle.Data;
     using MyLifeStyle.Data.Models;
     using MyLifeStyle.Services.Mapping;
@@ -18,12 +19,12 @@
             this.context = context;
         }
 
-        public IEnumerable<TViewModel> GetAllEvents<TViewModel>()
+        public async Task<IEnumerable<TViewModel>> GetAllEvents<TViewModel>()
         {
-            var events = this.context.Events
+            var events = await this.context.Events
                  .OrderBy(x => x.StartTime).ThenBy(y => y.EndTime)
                  .To<TViewModel>()
-                 .ToList();
+                 .ToListAsync();
 
             return events;
         }

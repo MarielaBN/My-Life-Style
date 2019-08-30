@@ -7,9 +7,9 @@
 
     public interface IArticlesService
     {
-        IEnumerable<TViewModel> GetAllArticlesByCategory<TViewModel>(string categoryId);
+        Task<IEnumerable<TViewModel>> GetAllArticlesByCategory<TViewModel>(string categoryId);
 
-        IEnumerable<TViewModel> GetAllArticles<TViewModel>();
+        Task<IEnumerable<TViewModel>> GetAllArticles<TViewModel>();
 
         Task<bool> CreateArticle(ArticleServiceModel serviceModel);
 

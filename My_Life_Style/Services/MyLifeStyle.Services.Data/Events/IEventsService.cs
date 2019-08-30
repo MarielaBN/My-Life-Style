@@ -6,7 +6,7 @@
 
     public interface IEventsService
     {
-        IEnumerable<TViewModel> GetAllEvents<TViewModel>();
+        Task<IEnumerable<TViewModel>> GetAllEvents<TViewModel>();
 
         Task<bool> CreateEvent(EventCreateInputModel eventModel);
     }

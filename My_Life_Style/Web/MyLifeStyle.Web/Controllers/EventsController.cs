@@ -23,9 +23,9 @@
             this.userManager = userManager;
         }
 
-        public IActionResult All()
+        public async Task<IActionResult> All()
         {
-            var events = this.eventsService
+            var events = await this.eventsService
                   .GetAllEvents<AllEventsViewModel>();
 
             return this.View(events);
@@ -34,7 +34,7 @@
         [Authorize]
         public async Task<IActionResult> Create()
         {
-            var categories = this.categoriesService
+            var categories = await this.categoriesService
                  .GetAllCategories<AllCategoriesViewModel>();
             var userId = this.userManager.GetUserId(this.User);
             var eventCreateInputModel = new EventCreateInputModel

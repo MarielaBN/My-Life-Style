@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using Microsoft.EntityFrameworkCore;
     using MyLifeStyle.Data;
     using MyLifeStyle.Data.Models;
     using MyLifeStyle.Services.Mapping;
@@ -18,12 +19,12 @@
             this.context = context;
         }
 
-        public IEnumerable<TViewModel> GetAllBooks<TViewModel>()
+        public async Task<IEnumerable<TViewModel>> GetAllBooks<TViewModel>()
         {
-            var books = this.context.Books
+            var books = await this.context.Books
                  .OrderByDescending(x => x.Publication.CreatedOn)
                  .To<TViewModel>()
-                 .ToList();
+                 .ToListAsync();
 
             return books;
         }

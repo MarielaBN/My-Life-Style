@@ -19,9 +19,9 @@
             this.userManager = userManager;
         }
 
-        public IActionResult All()
+        public async Task<IActionResult> All()
         {
-            var books = this.booksService
+            var books = await this.booksService
                   .GetAllBooks<AllBooksViewModel>();
 
             return this.View(books);

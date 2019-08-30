@@ -30,14 +30,14 @@
         }
 
         [HttpGet("[controller]/[action]/{id}")]
-        public IActionResult Index(string id)
+        public async Task<IActionResult> Index(string id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var articles = this.articlesService
+            var articles = await this.articlesService
                   .GetAllArticlesByCategory<AllArticlesViewModel>(id);
 
             return this.View(articles);
@@ -47,7 +47,7 @@
         [HttpGet]
         public async Task<IActionResult> All()
         {
-            var articles = this.articlesService.GetAllArticles<AllArticlesViewModel>();
+            var articles = await this.articlesService.GetAllArticles<AllArticlesViewModel>();
 
             return this.View(articles);
         }
@@ -55,7 +55,7 @@
         [Authorize]
         public async Task<IActionResult> Create()
         {
-            var categories = this.categoriesService
+            var categories = await this.categoriesService
                   .GetAllCategories<AllCategoriesViewModel>();
             var articleCreateInputModel = new ArticleCreateInputModel
             {

@@ -7,7 +7,7 @@
 
     public interface IRecipesService
     {
-        IEnumerable<TViewModel> GetAllRecipes<TViewModel>();
+        Task<IEnumerable<TViewModel>> GetAllRecipes<TViewModel>();
 
         Task<bool> CreateRecipe(RecipeCreateInputModel recipeModel);
 

@@ -3,6 +3,7 @@
     using Microsoft.AspNetCore.Mvc;
     using MyLifeStyle.Services.Data.Categories;
     using MyLifeStyle.Web.ViewModels.Categories;
+    using System.Threading.Tasks;
 
     public class CategoriesController : BaseController
     {
@@ -13,9 +14,9 @@
             this.categoriesService = categoriesService;
         }
 
-        public IActionResult All()
+        public async Task<IActionResult> All()
         {
-            var categories = this.categoriesService
+            var categories = await this.categoriesService
                   .GetAllCategories<AllCategoriesViewModel>();
 
             return this.View(categories);

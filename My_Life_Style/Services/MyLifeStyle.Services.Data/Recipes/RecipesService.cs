@@ -19,12 +19,12 @@
             this.context = context;
         }
 
-        public IEnumerable<TViewModel> GetAllRecipes<TViewModel>()
+        public async Task<IEnumerable<TViewModel>> GetAllRecipes<TViewModel>()
         {
-            var recipes = this.context.Recipes
+            var recipes = await this.context.Recipes
                  .OrderByDescending(x => x.Publication.CreatedOn)
                  .To<TViewModel>()
-                 .ToList();
+                 .ToListAsync();
 
             return recipes;
         }

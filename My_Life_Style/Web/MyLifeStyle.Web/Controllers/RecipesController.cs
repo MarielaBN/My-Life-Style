@@ -20,9 +20,9 @@
             this.userManager = userManager;
         }
 
-        public IActionResult All()
+        public async Task<IActionResult> All()
         {
-            var recipes = this.recipesService
+            var recipes = await this.recipesService
                   .GetAllRecipes<AllRecipesViewModel>();
 
             return this.View(recipes);

@@ -3,9 +3,10 @@
     using System;
     using System.Collections.Generic;
     using System.Text;
+    using System.Threading.Tasks;
 
     public interface ICategoriesService
     {
-        IEnumerable<TViewModel> GetAllCategories<TViewModel>();
+        Task<IEnumerable<TViewModel>> GetAllCategories<TViewModel>();
     }
 }

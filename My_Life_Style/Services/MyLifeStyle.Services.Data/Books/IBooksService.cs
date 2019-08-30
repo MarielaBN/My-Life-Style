@@ -7,7 +7,7 @@
 
     public interface IBooksService
     {
-        IEnumerable<TViewModel> GetAllBooks<TViewModel>();
+        Task<IEnumerable<TViewModel>> GetAllBooks<TViewModel>();
 
         Task<bool> CreateBook(BookCreateInputModel bookModel);
     }
