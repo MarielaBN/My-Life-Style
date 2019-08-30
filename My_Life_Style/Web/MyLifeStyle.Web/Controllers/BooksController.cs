@@ -37,7 +37,7 @@
             };
 
             return this.View(bookCreateInputModel);
-            //return this.Json(recipeCreateInputModel);
+            //return this.Json(bookCreateInputModel);
         }
 
         [HttpPost(Name = "Create")]
@@ -76,7 +76,7 @@
             //bookViewModel.CurrentUserId = currentUserId;
 
             //return this.View(bookViewModel);
-            // return this.Json(articleViewModel);
+            // return this.Json(bookViewModel);
             return this.Redirect("/Books/All");
         }
 

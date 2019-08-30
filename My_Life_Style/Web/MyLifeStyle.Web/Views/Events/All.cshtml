@@ -1,0 +1,36 @@
+﻿@using MyLifeStyle.Web.ViewModels.Events
+@model IEnumerable<AllEventsViewModel>
+
+@{
+    this.ViewData["Title"] = "All Events";
+}
+
+<h3>@this.ViewData["Title"]</h3>
+
+
+@foreach (var newEvent in Model)
+{
+    <hr>
+    <div class="post">
+        <h2 class="title"><a href="/Events/Details/@newEvent.Id">@newEvent.PublicationTitle</a></h2>
+        <div class="entry">
+            <p>@newEvent.Summary</p>
+        </div>
+        <p class="byline">
+            Време на провеждане от @newEvent.StartTime до @newEvent.EndTime
+            <a>&nbsp;&bull;&nbsp;</a>
+        </p>
+        <p class="byline">
+            Адрес: @newEvent.Address
+            <a>&nbsp;&bull;&nbsp;</a>
+        </p>
+        <div class="meta">
+            <p class="tags"></p>
+            <p class="links">
+                Публикувана на <a>@newEvent.PublicationCreatedOn</a>	&nbsp;&bull;&nbsp;
+                в категория <a href="/Events/All/@newEvent.CategoryId">@newEvent.CategoryName</a>	&nbsp;&bull;&nbsp;
+                <a href="/Comments/Event/@newEvent.PublicationId">@newEvent.CommentsCount коментара &#187;</a>
+            </p>
+        </div>
+    </div>
+}

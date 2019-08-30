@@ -50,5 +50,13 @@
             return this.View();
         }
 
+        public IActionResult Event(string id)
+        {
+            var eventId = id;
+
+            // var comments = this.commentsService.GetAllComments<AllCommentsViewModel>(publicationId);
+
+            return this.View();
+        }
     }
 }
