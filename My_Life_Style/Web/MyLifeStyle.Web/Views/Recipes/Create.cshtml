@@ -31,7 +31,7 @@
                 <div class="input-group-prepend">
                     <label asp-for="DishType" class="input-group-text"></label>
                 </div>
-                <select asp-for="DishType" class="custom-select" asp-items="@Html.GetEnumSelectList<DishType>()"> 
+                <select asp-for="DishType" class="custom-select" asp-items="@Html.GetEnumSelectList<DishType>()">
                     <option selected>Choose...</option>
                 </select>
             </div>
@@ -39,7 +39,7 @@
                 <div class="input-group-prepend">
                     <label asp-for="DietType" class="input-group-text"></label>
                 </div>
-                <select asp-for="DietType" class="custom-select" asp-items="@Html.GetEnumSelectList<DietType>()">   
+                <select asp-for="DietType" class="custom-select" asp-items="@Html.GetEnumSelectList<DietType>()">
                     <option selected>Choose...</option>
                 </select>
             </div>
@@ -48,4 +48,6 @@
     </div>
 </div>
 
-
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

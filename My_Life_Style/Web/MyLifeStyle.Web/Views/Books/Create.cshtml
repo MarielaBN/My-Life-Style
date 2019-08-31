@@ -4,7 +4,7 @@
     ViewData["Title"] = "Give Book";
 }
 
-    <h2>Add Readed Book</h2>
+<h2>Add Readed Book</h2>
 
 <div class="row">
     <div class="col-md-6">
@@ -30,10 +30,12 @@
                 <label asp-for="Year"></label>
                 <input asp-for="Year" class="form-control" placeholder="Year..." />
                 <span asp-validation-for="Year" class="text-danger"></span>
-            </div>            
+            </div>
             <button type="submit" class="btn btn-primary">Create</button>
         </form>
     </div>
 </div>
 
-
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
