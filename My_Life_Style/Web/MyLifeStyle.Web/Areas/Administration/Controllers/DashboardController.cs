@@ -11,7 +11,6 @@
     using MyLifeStyle.Services.Data.Dashboard;
     using MyLifeStyle.Web.Areas.Administration.ViewModels.Dashboard;
 
-    [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
     public class DashboardController : AdministrationController
     {
         private readonly UserManager<ApplicationUser> userManager;
