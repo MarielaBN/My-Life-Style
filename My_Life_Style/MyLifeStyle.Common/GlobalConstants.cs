@@ -6,5 +6,6 @@
         public const string ModeratorRoleName = "Moderator";
         public const string UserRoleName = "User";
         public const int AdminsCount = 1;
+        public const int SummaryLength = 250;
     }
 }

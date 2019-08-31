@@ -3,6 +3,7 @@
     using System;
 
     using AutoMapper;
+    using MyLifeStyle.Common;
     using MyLifeStyle.Data.Models;
     using MyLifeStyle.Services.Mapping;
 
@@ -34,7 +35,7 @@
             configuration.CreateMap<Article, AllArticlesViewModel>()
                 .ForMember(
                 x => x.Summary,
-                opt => opt.MapFrom(x => x.Description.Substring(0, 200) + "..."));
+                opt => opt.MapFrom(x => x.Description.Substring(0, GlobalConstants.SummaryLength) + "..."));
         }
     }
 }

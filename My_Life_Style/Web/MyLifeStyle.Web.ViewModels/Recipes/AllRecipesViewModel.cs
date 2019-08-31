@@ -3,6 +3,7 @@
     using System;
 
     using AutoMapper;
+    using MyLifeStyle.Common;
     using MyLifeStyle.Data.Models;
     using MyLifeStyle.Data.Models.Enums;
     using MyLifeStyle.Services.Mapping;
@@ -35,7 +36,7 @@
             configuration.CreateMap<Recipe, AllRecipesViewModel>()
                 .ForMember(
                 x => x.Summary,
-                opt => opt.MapFrom(x => x.Description.Substring(0, 160) + "..."));
+                opt => opt.MapFrom(x => x.Description.Substring(0, GlobalConstants.SummaryLength) + "..."));
         }
     }
 }
