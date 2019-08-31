@@ -14,5 +14,9 @@
         Task<bool> CreateArticle(ArticleServiceModel serviceModel);
 
         Task<ArticleDetailsViewModel> GetArticleById(string id);
+
+        Task<bool> Delete(string id);
+
+        Task<string> GetUserIdByArticleId(string id);
     }
 }

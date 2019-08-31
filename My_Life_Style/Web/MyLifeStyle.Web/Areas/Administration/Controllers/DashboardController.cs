@@ -11,6 +11,7 @@
     using MyLifeStyle.Services.Data.Dashboard;
     using MyLifeStyle.Web.Areas.Administration.ViewModels.Dashboard;
 
+    [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
     public class DashboardController : AdministrationController
     {
         private readonly UserManager<ApplicationUser> userManager;
@@ -22,7 +23,6 @@
             this.dashboardService = dashboardService;
         }
 
-        [Authorize]
         public IActionResult Index()
         {
             int getAllRegisteredCount = this.userManager.Users.Select(x => x).Count();
@@ -33,7 +33,6 @@
             return this.View(viewModel);
         }
 
-        [Authorize]
         public async Task<IActionResult> Promote()
         {
 
@@ -41,7 +40,6 @@
         }
 
         [HttpPost]
-        [Authorize]
         public async Task<IActionResult> Promote(PromoteUserInputModel promoteUserInput)
         {
 
@@ -66,8 +64,6 @@
             return this.Redirect("/Administration/Dashboard/Index");
         }
 
-
-        [Authorize]
         public async Task<IActionResult> Demote()
         {
 
@@ -75,7 +71,6 @@
         }
 
         [HttpPost]
-        [Authorize]
         public async Task<IActionResult> Demote(DemoteModeratorInputModel demoteModeratorInput)
         {
             var getUser = this.userManager.Users.Where(x => x.UserName == demoteModeratorInput.UserName).Select(x => x).FirstOrDefault();

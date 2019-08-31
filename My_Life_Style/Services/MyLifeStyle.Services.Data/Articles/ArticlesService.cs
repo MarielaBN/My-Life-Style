@@ -80,5 +80,46 @@
 
             return article;
         }
+
+        public async Task<bool> Delete(string id)
+        {
+            Article articleFromDb = await this.context.Articles.SingleOrDefaultAsync(a => a.Id == id);
+            if (articleFromDb == null)
+            {
+                throw new ArgumentNullException(nameof(articleFromDb));
+            }
+
+            var publicationId = articleFromDb.PublicationId;
+            Publication publicationFromDb = await this.context.Publications.SingleOrDefaultAsync(a => a.Id == publicationId);
+
+            var categoryId = articleFromDb.CategoryId;
+            Category categoryFromDb = await this.context.Categories.SingleOrDefaultAsync(a => a.Id == categoryId);
+
+            categoryFromDb.ArticlesCount--;
+            this.context.Articles.Remove(articleFromDb);
+            this.context.Publications.Remove(publicationFromDb);
+
+            int result = await this.context.SaveChangesAsync();
+
+            return result > 0;
+        }
+
+        public async Task<string> GetUserIdByArticleId(string id)
+        {
+            Article articleFromDb = await this.context.Articles.SingleOrDefaultAsync(a => a.Id == id);
+
+            if (articleFromDb == null)
+            {
+                throw new ArgumentNullException(nameof(articleFromDb));
+            }
+
+            var articleDeleteModel = await this.context.Articles
+                 .Where(a => a.Id == id)
+                 .To<ArticleDeleteBindingModel>()
+                 .FirstOrDefaultAsync();
+
+            var userId = articleDeleteModel.PublicationUserId;
+            return userId;
+        }
     }
 }

@@ -73,8 +73,8 @@
                 options =>
                 {
                     options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
-                }
-                ).SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                })
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
                 .AddRazorPagesOptions(options =>
                 {
                     options.AllowAreas = true;
@@ -128,8 +128,8 @@
         {
             AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
 
-           // CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
-           // CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.InvariantCulture;
+            // CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
+            // CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.InvariantCulture;
 
             // Seed data on application startup
             using (var serviceScope = app.ApplicationServices.CreateScope())
