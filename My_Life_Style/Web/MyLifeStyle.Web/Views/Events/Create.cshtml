@@ -41,7 +41,7 @@
                     <label class="input-group-text" for="CategoryId">Category</label>
                 </div>
                 <select class="custom-select" id="CategoryId" name="CategoryId">
-                    <option selected>Choose...</option>
+                    @*<option selected>Choose...</option>*@
                     @foreach (var category in Model.AllCategories)
                     {
                         <option value=@category.Id>@category.Name</option>
@@ -53,6 +53,6 @@
     </div>
 </div>
 
-@section Scripts {
+@*@section Scripts {
     <partial name="_ValidationScriptsPartial" />
-}
+}*@

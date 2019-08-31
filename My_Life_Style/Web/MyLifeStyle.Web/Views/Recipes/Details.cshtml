@@ -12,11 +12,15 @@
 <h2 class="title">@Model.PublicationTitle</h2>
 <hr>
 <div class="article text">
-    <h4>Необходими продукти:</h4>
-    <p>
-        @Model.Ingredients
-    </p>
-    <hr>
+
+    @if (@Model.Ingredients != null)
+    {
+        <h4>Необходими продукти:</h4>
+        <p>
+            @Model.Ingredients
+        </p>
+        <hr>
+    }
     <h4>Начин на приготвяне:</h4>
     <p>
         @Model.Description

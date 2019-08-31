@@ -17,19 +17,21 @@
 
         [Display(Name = "Description")]
         [MaxLength(1000, ErrorMessage = "The {0} must be at max {1} characters long.")]
+        [Required(ErrorMessage = "Enter \"{0}\".")]
         public string Description { get; set; }
 
         [Display(Name = "Address")]
-        [Required]
+        [Required(ErrorMessage = "Enter \"{0}\".")]
         public string Address { get; set; }
 
         [Display(Name = "Start Time")]
         [DataType(DataType.DateTime)]
-        [Required]
+        [Required(ErrorMessage = "Enter \"{0}\".")]
         public DateTime StartTime { get; set; }
 
         [Display(Name = "End Time")]
         [DataType(DataType.DateTime)]
+        [Required(ErrorMessage = "Enter \"{0}\".")]
         public DateTime EndTime { get; set; }
 
         public string PublicationUserId { get; set; }

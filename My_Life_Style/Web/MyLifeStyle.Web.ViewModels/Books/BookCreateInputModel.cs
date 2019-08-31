@@ -13,6 +13,7 @@
         public string PublicationTitle { get; set; }
 
         [Display(Name = "Description")]
+        [Required(ErrorMessage = "Enter \"{0}\".")]
         [MaxLength(1000, ErrorMessage = "The {0} must be at max {1} characters long.")]
         public string Description { get; set; }
 
@@ -22,7 +23,7 @@
         public string AuthorName { get; set; }
 
         [Display(Name = "Year")]
-        [Range(1000, 3000)]
+        [Range(1600, 2020)]
         public ushort Year { get; set; }
 
         public string PublicationUserId { get; set; }
