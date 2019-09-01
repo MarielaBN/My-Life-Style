@@ -88,7 +88,6 @@
             await context.SaveChangesAsync();
             context.Categories.AddRange(this.GetInitialCategoriesData());
             await context.SaveChangesAsync();
-            // string publicationId = context.Publications.Where(a => a.Title == "Social Media").FirstOrDefault().Id;
             context.Articles.AddRange(this.GetInitialArticlesData());
             await context.SaveChangesAsync();
         }
